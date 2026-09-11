@@ -1,0 +1,31 @@
+# Lab (upstream clone, never committed)
+lab/
+vendor/
+
+# Work in progress / unverified / blocked PoCs
+_wip/
+
+# Generated reports, dumps
+# NOTE: vulns/*/evidence/run-*.log is committed raw evidence and must NOT be
+# ignored; only throwaway logs outside the evidence directories are ignored.
+/_wip/
+*.sql
+*.dump
+*.tar.gz
+verify-*.json
+VERIFY-REPORT.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Local env
+.env
