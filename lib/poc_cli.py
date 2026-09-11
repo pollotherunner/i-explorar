@@ -59,10 +59,12 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
 
     if not args.json:
         print(colors.cyan(BANNER))
-        print(f"  {colors.bold('VULN ' + str(vuln.get('id')) + ' — ' + str(vuln.get('title')))}")
-        if vuln.get("endpoint"):
-            print(f"  {colors.dim(str(vuln['endpoint']))}")
         print()
+        if args.verbose:
+            print(f"  {colors.bold('VULN ' + str(vuln.get('id')) + ' — ' + str(vuln.get('title')))}")
+            if vuln.get("endpoint"):
+                print(f"  {colors.dim(str(vuln['endpoint']))}")
+            print()
 
     try:
         result = run_fn(target, verbose=args.verbose)
@@ -95,13 +97,14 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
         else:
             print(f"  {colors.red('[-]')} {colors.red(proof)}")
 
-        for path in result["evidence"]:
-            try:
-                shown = Path(path).relative_to(ROOT)
-            except ValueError:
-                shown = Path(path)
-            print(f"      {colors.dim('evidence: ' + str(shown))}")
-        print(f"      {colors.dim('command:  ' + command)}")
+        if args.verbose:
+            for path in result["evidence"]:
+                try:
+                    shown = Path(path).relative_to(ROOT)
+                except ValueError:
+                    shown = Path(path)
+                print(f"      {colors.dim('evidence: ' + str(shown))}")
+            print(f"      {colors.dim('command:  ' + command)}")
 
     if args.print_evidence:
         evidence_dir = Path(poc_file).resolve().parent / "evidence"
