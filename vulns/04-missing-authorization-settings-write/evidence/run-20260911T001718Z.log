@@ -1,0 +1,20 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:18.720235+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# labelled setting 'Chave de acesso ao i-Educar' -> id=4 value='ieducar-access-key'
+# admin settings page HTTP 200
+
+### GET settings page as secretary (read denied)
+HTTP 302
+location: http://127.0.0.1:8080/intranet/educar_index.php
+
+### POST settings as secretary (4=IEXPLORAR_POC_KEY_345740)
+HTTP 302
+location: http://127.0.0.1:8080/configuracoes/configuracoes-de-sistema
+# admin sees setting 4 = 'IEXPLORAR_POC_KEY_345740' after the secretary write
+
+### restore (4=ieducar-access-key) as secretary
+HTTP 302
+# admin sees setting 4 = 'ieducar-access-key' after restore
+# finished_at: 2026-09-11T00:17:20.301091+00:00
