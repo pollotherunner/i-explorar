@@ -153,4 +153,4 @@ of this repository) increases the reachable impact.
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-862: https://cwe.mitre.org/data/definitions/862.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/04-missing-authorization-settings-write/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/04-missing-authorization-settings-write/README.md

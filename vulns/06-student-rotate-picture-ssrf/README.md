@@ -172,4 +172,4 @@ channels are observable through response timing and status.
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-918: https://cwe.mitre.org/data/definitions/918.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/06-student-rotate-picture-ssrf/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/06-student-rotate-picture-ssrf/README.md

@@ -54,7 +54,7 @@ VULN = {
         "evidence/screenshots/04-missing-authorization-settings-write-01-access-key-changed-by-secretary.png",
         "evidence/screenshots/04-missing-authorization-settings-write-02-raw-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/04-missing-authorization-settings-write/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/04-missing-authorization-settings-write/README.md",
 }
 
 SECRETARY = credentials.credentials("secretary")

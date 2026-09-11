@@ -169,4 +169,4 @@ require a valid form state or CSRF token.
 - Upstream repository: https://github.com/portabilis/i-educar
 - phpggc gadget chain used (Laravel/RCE22): https://github.com/ambionics/phpggc/blob/master/gadgetchains/Laravel/RCE/22/gadgets.php
 - CWE-502: https://cwe.mitre.org/data/definitions/502.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/08-quadro-horario-object-injection/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/08-quadro-horario-object-injection/README.md

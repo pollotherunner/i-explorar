@@ -134,4 +134,4 @@ hard-cleanup jobs could make the loss permanent.
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-306: https://cwe.mitre.org/data/definitions/306.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/03-unauthenticated-employee-withdrawal-delete/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/03-unauthenticated-employee-withdrawal-delete/README.md

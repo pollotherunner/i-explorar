@@ -60,7 +60,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/08-quadro-horario-object-injection-01-marker-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/08-quadro-horario-object-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/08-quadro-horario-object-injection/README.md",
 }
 
 # phpggc Laravel/RCE22 for system('id > /tmp/poc08marker'), generated once:

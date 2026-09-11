@@ -266,4 +266,4 @@ access level with broader permissions.
   `/cancelar-enturmacao-em-lote/`): CVE-2025-10071 —
   https://vuldb.com/vuln/323019
 - CWE-862: https://cwe.mitre.org/data/definitions/862.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/02-missing-authorization-admin-routes/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/02-missing-authorization-admin-routes/README.md

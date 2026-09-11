@@ -51,7 +51,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/10-pessoa-reativar-sql-injection-01-version-leak.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/10-pessoa-reativar-sql-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/10-pessoa-reativar-sql-injection/README.md",
 }
 
 ADMIN = credentials.credentials("admin")

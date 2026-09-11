@@ -186,4 +186,4 @@ restarts until the formula is changed.
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-94: https://cwe.mitre.org/data/definitions/94.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/07-formula-media-eval-code-injection/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/07-formula-media-eval-code-injection/README.md

@@ -54,7 +54,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/09-agenda-sql-injection-01-version-leak.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/09-agenda-sql-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/09-agenda-sql-injection/README.md",
 }
 
 ADMIN = credentials.credentials("admin")

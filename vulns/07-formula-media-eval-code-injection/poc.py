@@ -57,7 +57,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/07-formula-media-eval-code-injection-01-marker-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/07-formula-media-eval-code-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/07-formula-media-eval-code-injection/README.md",
 }
 
 ADMIN = credentials.credentials("admin")

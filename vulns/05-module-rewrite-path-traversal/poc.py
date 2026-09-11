@@ -55,7 +55,7 @@ VULN = {
         "evidence/screenshots/05-module-rewrite-path-traversal-01-traversal-marker.png",
         "evidence/screenshots/05-module-rewrite-path-traversal-02-env-redacted-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/05-module-rewrite-path-traversal/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/05-module-rewrite-path-traversal/README.md",
 }
 
 MARKER_NAME = "i_explorar_poc05_marker.html"

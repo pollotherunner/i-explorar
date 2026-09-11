@@ -52,7 +52,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/06-student-rotate-picture-ssrf-01-callback-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/06-student-rotate-picture-ssrf/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/06-student-rotate-picture-ssrf/README.md",
 }
 
 STUDENT_ID = 3

@@ -126,4 +126,4 @@ timing oracle:
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-89: https://cwe.mitre.org/data/definitions/89.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/12-turma-xml-sql-injection/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/12-turma-xml-sql-injection/README.md

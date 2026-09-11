@@ -48,7 +48,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/11-escola-ano-letivo-sql-injection-01-time-delay.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/11-escola-ano-letivo-sql-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/11-escola-ano-letivo-sql-injection/README.md",
 }
 
 ADMIN = credentials.credentials("admin")

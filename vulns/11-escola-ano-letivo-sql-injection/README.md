@@ -136,4 +136,4 @@ database through a timing oracle:
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-89: https://cwe.mitre.org/data/definitions/89.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/11-escola-ano-letivo-sql-injection/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/11-escola-ano-letivo-sql-injection/README.md

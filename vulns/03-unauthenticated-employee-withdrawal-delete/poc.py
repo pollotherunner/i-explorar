@@ -57,7 +57,7 @@ VULN = {
     "screenshots": [
         "evidence/screenshots/03-unauthenticated-employee-withdrawal-delete-01-vulnerable-run.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/03-unauthenticated-employee-withdrawal-delete/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/03-unauthenticated-employee-withdrawal-delete/README.md",
 }
 
 SEED_SQL = (

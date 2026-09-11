@@ -52,7 +52,7 @@ VULN = {
         "evidence/screenshots/02-missing-authorization-admin-routes-02-release-period-created-as-secretary.png",
         "evidence/screenshots/02-missing-authorization-admin-routes-03-raw-proof.png",
     ],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/02-missing-authorization-admin-routes/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/02-missing-authorization-admin-routes/README.md",
 }
 
 SECRETARY = credentials.credentials("secretary")

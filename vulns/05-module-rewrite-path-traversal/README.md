@@ -257,4 +257,4 @@ on the compose network, bypassing application authorization entirely.
 
 - Upstream repository: https://github.com/portabilis/i-educar
 - CWE-22: https://cwe.mitre.org/data/definitions/22.html
-- This advisory (canonical URL): https://github.com/i-explorar/i-explorar/blob/main/vulns/05-module-rewrite-path-traversal/README.md
+- This advisory (canonical URL): https://github.com/pollotherunner/i-explorar/blob/main/vulns/05-module-rewrite-path-traversal/README.md

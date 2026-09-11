@@ -52,7 +52,7 @@ VULN = {
     "status": "verified",
     "blocked_reason": "",
     "screenshots": ["evidence/screenshots/01-db-restore-command-injection-01-marker-proof.png"],
-    "advisory_url": "https://github.com/i-explorar/i-explorar/blob/main/vulns/01-db-restore-command-injection/README.md",
+    "advisory_url": "https://github.com/pollotherunner/i-explorar/blob/main/vulns/01-db-restore-command-injection/README.md",
 }
 
 MARKER_TEMPLATE = "/tmp/i_explorar_poc01_{pid}.txt"
