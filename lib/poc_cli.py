@@ -19,6 +19,43 @@ from .art import BANNER, Colors
 ROOT = Path(__file__).resolve().parents[1]
 
 
+_SKIP_PREFIXES = (
+    "i-explorar raw evidence",
+    "started_at",
+    "finished_at",
+    "host",
+    "lab:",
+    "lab commit:",
+)
+
+
+def exploit_sequence(log_path: Path) -> list[str]:
+    """Condense a raw evidence log into the ordered exploit steps.
+
+    Uses the "# ..." facts and "### ..." section headers written by the PoCs,
+    appending the HTTP status line that follows a section header. Commands and
+    response bodies are intentionally left out; they stay in the raw log.
+    """
+    steps: list[str] = []
+    lines = log_path.read_text(encoding="utf-8").splitlines()
+    for index, line in enumerate(lines):
+        if line.startswith("# "):
+            text = line[2:].strip()
+            if text.startswith(_SKIP_PREFIXES):
+                continue
+            if text not in steps:
+                steps.append(text)
+        elif line.startswith("### "):
+            text = line[4:].strip()
+            for follow in lines[index + 1:index + 4]:
+                if follow.startswith("HTTP "):
+                    text = f"{text} -> {follow.strip()}"
+                    break
+            if text not in steps:
+                steps.append(text)
+    return steps
+
+
 def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
     parser = argparse.ArgumentParser(
         prog=Path(poc_file).name,
@@ -89,13 +126,22 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
     if args.json:
         print(json.dumps(result, indent=2))
     else:
+        logs = sorted(
+            (Path(poc_file).resolve().parent / "evidence").glob("run-*.log"),
+            key=lambda item: item.stat().st_mtime,
+        )
+        if logs:
+            for step in exploit_sequence(logs[-1]):
+                print(f"  {colors.green('[+]')} {step}")
+            print()
+
         proof = str(result["notes"]).strip() or (
             "target is vulnerable" if result["vulnerable"] else "not reproduced"
         )
         if result["vulnerable"]:
-            print(f"  {colors.green('[+]')} {colors.green(proof)}")
+            print(f"  {colors.green('[+]')} {colors.bold(colors.green('VULNERABLE'))} — {proof}")
         else:
-            print(f"  {colors.red('[-]')} {colors.red(proof)}")
+            print(f"  {colors.red('[-]')} {colors.bold(colors.red('NOT VULNERABLE'))} — {proof}")
 
         if args.verbose:
             for path in result["evidence"]:

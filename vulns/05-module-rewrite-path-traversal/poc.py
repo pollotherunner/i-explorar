@@ -105,6 +105,7 @@ def run(target: str, *, verbose: bool = False) -> dict:
         log.command(f"docker compose exec -T php sh -c 'cat > {MARKER_PATH}'  # marker written")
         log.block("seed output", (seed.stdout + seed.stderr).strip() or "(empty)")
 
+        log.write(f"# marker file written inside the container: /var/www/ieducar/{MARKER_NAME}")
         marker = client.get(TRAVERSAL_MARKER)
         log.write("")
         log.write(f"### GET {TRAVERSAL_MARKER}")

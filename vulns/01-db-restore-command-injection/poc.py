@@ -117,6 +117,7 @@ def run(target: str, *, verbose: bool = False) -> dict:
         )
         _, restore_output = _run(restore_cmd, log=log, cwd=lab)
 
+        log.write("# artisan ran the shell command built with sprintf()+passthru() (no escapeshellarg)")
         cat_cmd = _compose(lab, "exec", "-T", "php", "cat", marker)
         _, marker_output = _run(cat_cmd, log=log, cwd=lab)
         marker_content = marker_output.strip()
@@ -125,6 +126,7 @@ def run(target: str, *, verbose: bool = False) -> dict:
         if verbose:
             log.write(f"# marker content: {marker_content!r}")
         if vulnerable:
+            log.write("# marker read back from the ieducar-php container")
             notes.append(f"injected command executed: {marker_content}")
         else:
             notes.append("marker file was not created — injection did not execute")

@@ -51,9 +51,10 @@ def main(argv: list[str]) -> int:
   activity; everything happens inside `run()` / `main()`.
 - **Writes raw evidence.** Use `lib.evidence.EvidenceLog` so each run appends
   `evidence/run-<timestamp>.log` with the real output and timestamps.
-- **Minimal default output:** the ASCII banner plus one `[+]`/`[-]` result
-  line. `--verbose` adds the endpoint, evidence path and exact command;
-  `--print-evidence` dumps the whole raw log.
+- **Minimal default output:** the ASCII banner, the ordered exploit sequence
+  (`[+]` per step, condensed from the raw log) and one final
+  `[+] VULNERABLE — ...` line. `--verbose` adds the endpoint, evidence path and
+  exact command; `--print-evidence` dumps the whole raw log.
 - **Minimal and non-destructive.** Read-only SQL payloads, one or two rows of
   proof, no `DROP`/`DELETE` of real data, no DoS, no persistence.
 - **Standalone and importable.** `python3 vulns/NN-<slug>/poc.py --target
