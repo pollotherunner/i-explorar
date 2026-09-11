@@ -1,0 +1,113 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:16.066208+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# secretary login -> HTTP 302
+# admin login -> HTTP 302
+
+### POST /turma as secretary (no authorization gate)
+HTTP 500
+
+--- body ---
+{"msg":"Undefined array key \"ano_letivo\""}
+--- end body ---
+
+### POST /usuarios/tipos as secretary (name=IEXPLORAR_POC_345740)
+HTTP 302
+location: http://127.0.0.1:8080/usuarios/tipos
+
+--- body ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url='http://127.0.0.1:8080/usuarios/tipos'" />
+
+        <title>Redirecting to http://127.0.0.1:8080/usuarios/tipos</title>
+    </head>
+    <body>
+        Redirecting to <a href="http://127.0.0.1:8080/usuarios/tipos">http://127.0.0.1:8080/usuarios/tipos</a>.
+    </body>
+</html>
+--- end body ---
+
+### GET /usuarios/tipos as secretary (read is denied)
+HTTP 302
+location: index.php?negado=1&err=1
+
+--- body ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url='index.php?negado=1&amp;err=1'" />
+
+        <title>Redirecting to index.php?negado=1&amp;err=1</title>
+    </head>
+    <body>
+        Redirecting to <a href="index.php?negado=1&amp;err=1">index.php?negado=1&amp;err=1</a>.
+    </body>
+</html>
+--- end body ---
+# created user type id (from admin listing): 4
+
+### DELETE /usuarios/tipos/4 as secretary
+HTTP 302
+location: http://127.0.0.1:8080/usuarios/tipos
+
+--- body ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url='http://127.0.0.1:8080/usuarios/tipos'" />
+
+        <title>Redirecting to http://127.0.0.1:8080/usuarios/tipos</title>
+    </head>
+    <body>
+        Redirecting to <a href="http://127.0.0.1:8080/usuarios/tipos">http://127.0.0.1:8080/usuarios/tipos</a>.
+    </body>
+</html>
+--- end body ---
+# row absent after delete: True
+
+### POST /periodo-lancamento/criar as secretary
+HTTP 302
+location: http://127.0.0.1:8080/periodo-lancamento
+
+--- body ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url='http://127.0.0.1:8080/periodo-lancamento'" />
+
+        <title>Redirecting to http://127.0.0.1:8080/periodo-lancamento</title>
+    </head>
+    <body>
+        Redirecting to <a href="http://127.0.0.1:8080/periodo-lancamento">http://127.0.0.1:8080/periodo-lancamento</a>.
+    </body>
+</html>
+--- end body ---
+# release period ids before=[] after=['1']
+
+### GET /periodo-lancamento/excluir?periods[]=1 as secretary
+HTTP 302
+location: http://127.0.0.1:8080/periodo-lancamento
+
+--- body ---
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="refresh" content="0;url='http://127.0.0.1:8080/periodo-lancamento'" />
+
+        <title>Redirecting to http://127.0.0.1:8080/periodo-lancamento</title>
+    </head>
+    <body>
+        Redirecting to <a href="http://127.0.0.1:8080/periodo-lancamento">http://127.0.0.1:8080/periodo-lancamento</a>.
+    </body>
+</html>
+--- end body ---
+# release period 1 absent after delete: True
+# finished_at: 2026-09-11T00:17:18.220849+00:00
