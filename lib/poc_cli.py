@@ -29,6 +29,11 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
     )
     parser.add_argument("--json", action="store_true", help="machine-readable result")
     parser.add_argument("--verbose", action="store_true", help="extra verbosity")
+    parser.add_argument(
+        "--print-evidence",
+        action="store_true",
+        help="also print the newest raw evidence log of this PoC",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -70,5 +75,16 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
             print(f"notes: {result['notes']}")
         for path in result["evidence"]:
             print(f"evidence: {path}")
+
+    if args.print_evidence:
+        evidence_dir = Path(poc_file).resolve().parent / "evidence"
+        logs = sorted(evidence_dir.glob("run-*.log"), key=lambda item: item.stat().st_mtime)
+        stream = sys.stderr if args.json else sys.stdout
+        if logs:
+            print(file=stream)
+            print(f"=================== raw evidence: {logs[-1]} ===================", file=stream)
+            print(logs[-1].read_text(encoding="utf-8"), file=stream, end="")
+        else:
+            print("no evidence log found", file=sys.stderr)
 
     return 0 if result["vulnerable"] else 1
