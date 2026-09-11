@@ -6,6 +6,19 @@ report to the maintainer actually happened; empty means it did not.
 
 | ID | Title | Status | Reported at | Follow-ups | Silence (days) |
 |----|-------|--------|-------------|------------|----------------|
+| 01 | OS command injection in `php artisan database:restore` | `verified` | - | - | 0 |
+| 02 | Missing authorization on administrative write routes | `verified` | - | - | 0 |
+| 03 | Unauthenticated soft-delete of employee withdrawal records | `verified` | - | - | 0 |
+| 04 | Missing authorization in SettingController::saveInputs() | `verified` | - | - | 0 |
+| 05 | Path traversal / local file read in LegacyModuleRewriteController | `verified` | - | - | 0 |
+| 06 | Unauthenticated SSRF in StudentRotatePictureController::rotate() | `verified` | - | - | 0 |
+| 07 | Code injection (eval) in FormulaMedia_Model_Formula::_exec() | `verified` | - | - | 0 |
+| 08 | PHP object injection in educar_quadro_horario_horarios_cad.php | `verified` | - | - | 0 |
+| 09 | Error-based SQL injection in agenda_admin_cad.php (nm_agenda) | `verified` | - | - | 0 |
+| 10 | Error-based SQL injection in PessoaController::reativarPessoa() (id) | `verified` | - | - | 0 |
+| 11 | Time-based SQL injection in educar_escola_ano_letivo_xml.php (ano_atual) | `verified` | - | - | 0 |
+| 12 | Time-based SQL injection in educar_turma_xml.php (ano) | `verified` | - | - | 0 |
+| 13 | Error-based SQL injection in MatriculaController::getFrequencia() (id) | `verified` | - | - | 0 |
 
 ## Notes
 

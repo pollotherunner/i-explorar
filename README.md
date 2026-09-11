@@ -11,6 +11,19 @@ The single source of truth for each item is the `VULN` dict inside its own
 
 | ID | Title | CWE | Endpoint | Status | Advisory |
 |----|-------|-----|----------|--------|----------|
+| 01 | OS command injection in `php artisan database:restore` | CWE-78 | CLI `php artisan database:restore {database} {filename}` | `verified` | [vulns/01-db-restore-command-injection/README.md](vulns/01-db-restore-command-injection/README.md) |
+| 02 | Missing authorization on administrative write routes | CWE-862 | `POST /turma; POST /periodo-lancamento/criar; GET /periodo-lancamento/excluir; POST\|PUT\|DELETE /usuarios/tipos*` | `verified` | [vulns/02-missing-authorization-admin-routes/README.md](vulns/02-missing-authorization-admin-routes/README.md) |
+| 03 | Unauthenticated soft-delete of employee withdrawal records | CWE-306 | `DELETE /api/employee-withdrawal/{id}` | `verified` | [vulns/03-unauthenticated-employee-withdrawal-delete/README.md](vulns/03-unauthenticated-employee-withdrawal-delete/README.md) |
+| 04 | Missing authorization in SettingController::saveInputs() | CWE-862 | `POST /configuracoes/configuracoes-de-sistema` | `verified` | [vulns/04-missing-authorization-settings-write/README.md](vulns/04-missing-authorization-settings-write/README.md) |
+| 05 | Path traversal / local file read in LegacyModuleRewriteController | CWE-22 | `GET /module/{module}/styles/{resource}` | `verified` | [vulns/05-module-rewrite-path-traversal/README.md](vulns/05-module-rewrite-path-traversal/README.md) |
+| 06 | Unauthenticated SSRF in StudentRotatePictureController::rotate() | CWE-918 | `POST /api/students/{student}/rotate-picture` | `verified` | [vulns/06-student-rotate-picture-ssrf/README.md](vulns/06-student-rotate-picture-ssrf/README.md) |
+| 07 | Code injection (eval) in FormulaMedia_Model_Formula::_exec() | CWE-94 | `POST /module/FormulaMedia/edit; POST /module/Avaliacao/diarioApi?resource=nota&oper=post` | `verified` | [vulns/07-formula-media-eval-code-injection/README.md](vulns/07-formula-media-eval-code-injection/README.md) |
+| 08 | PHP object injection in educar_quadro_horario_horarios_cad.php | CWE-502 | `POST /intranet/educar_quadro_horario_horarios_cad.php` | `verified` | [vulns/08-quadro-horario-object-injection/README.md](vulns/08-quadro-horario-object-injection/README.md) |
+| 09 | Error-based SQL injection in agenda_admin_cad.php (nm_agenda) | CWE-89 | `POST /intranet/agenda_admin_cad.php` | `verified` | [vulns/09-agenda-sql-injection/README.md](vulns/09-agenda-sql-injection/README.md) |
+| 10 | Error-based SQL injection in PessoaController::reativarPessoa() (id) | CWE-89 | `GET /module/Api/Pessoa?oper=get&resource=reativarPessoa` | `verified` | [vulns/10-pessoa-reativar-sql-injection/README.md](vulns/10-pessoa-reativar-sql-injection/README.md) |
+| 11 | Time-based SQL injection in educar_escola_ano_letivo_xml.php (ano_atual) | CWE-89 | `GET /intranet/educar_escola_ano_letivo_xml.php` | `verified` | [vulns/11-escola-ano-letivo-sql-injection/README.md](vulns/11-escola-ano-letivo-sql-injection/README.md) |
+| 12 | Time-based SQL injection in educar_turma_xml.php (ano) | CWE-89 | `GET /intranet/educar_turma_xml.php` | `verified` | [vulns/12-turma-xml-sql-injection/README.md](vulns/12-turma-xml-sql-injection/README.md) |
+| 13 | Error-based SQL injection in MatriculaController::getFrequencia() (id) | CWE-89 | `GET /module/Api/Matricula?oper=get&resource=frequencia` | `verified` | [vulns/13-matricula-frequencia-sql-injection/README.md](vulns/13-matricula-frequencia-sql-injection/README.md) |
 
 ## Not verified
 
