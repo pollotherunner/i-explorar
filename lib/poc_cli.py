@@ -96,7 +96,6 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
 
     if not args.json:
         print(colors.cyan(BANNER))
-        print()
         if args.verbose:
             print(f"  {colors.bold('VULN ' + str(vuln.get('id')) + ' — ' + str(vuln.get('title')))}")
             if vuln.get("endpoint"):
