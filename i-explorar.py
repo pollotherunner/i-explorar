@@ -20,16 +20,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from lib import lab_guard  # noqa: E402
-
-BANNER = r"""
-  _        ______            _
- (_)      |  ____|          | |
-  _ ______| |__  __  ___ __ | | ___  _ __ __ _ _ __
- | |______|  __| \ \/ / '_ \| |/ _ \| '__/ _` | '__|
- | |      | |____ >  <| |_) | | (_) | | | (_| | |
- |_|      |______/_/\_\ .__/|_|\___/|_|  \__,_|_|
-                    i - e d u c a r   l o c a l   d i s c l o s u r e
-"""
+from lib.art import BANNER  # noqa: E402
 
 DEFAULT_TARGET = "http://127.0.0.1:8080"
 
@@ -352,7 +343,10 @@ def rewrite_index(items: list[dict]) -> None:
         "# regenerate this file and RESEARCH-TIMELINE.md from the VULN dicts",
         "python3 i-explorar.py --index",
         "",
-        "# any PoC also runs standalone; --print-evidence prints the raw run log",
+        "# any PoC runs standalone (ASCII banner + colored result)",
+        "python3 vulns/01-<slug>/poc.py --target http://127.0.0.1:8080",
+        "",
+        "# add --print-evidence to also dump the full raw run log",
         "python3 vulns/01-<slug>/poc.py --target http://127.0.0.1:8080 --print-evidence",
         "",
         "# shortcut: run one PoC and print its newest raw evidence log",

@@ -33,7 +33,7 @@ def run(target: str, *, verbose: bool = False) -> dict:
     """Returns {'vulnerable': bool, 'evidence': [str, ...], 'notes': str}."""
 
 def main(argv: list[str]) -> int:
-    """argparse CLI: --target, --json, --verbose, --print-evidence. Returns process exit code."""
+    """argparse CLI: --target, --json, --verbose, --print-evidence, --no-color."""
 ```
 
 ## Rules

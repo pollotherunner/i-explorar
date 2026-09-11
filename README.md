@@ -44,7 +44,10 @@ python3 i-explorar.py --all --json
 # regenerate this file and RESEARCH-TIMELINE.md from the VULN dicts
 python3 i-explorar.py --index
 
-# any PoC also runs standalone; --print-evidence prints the raw run log
+# any PoC runs standalone (ASCII banner + colored result)
+python3 vulns/01-<slug>/poc.py --target http://127.0.0.1:8080
+
+# add --print-evidence to also dump the full raw run log
 python3 vulns/01-<slug>/poc.py --target http://127.0.0.1:8080 --print-evidence
 
 # shortcut: run one PoC and print its newest raw evidence log

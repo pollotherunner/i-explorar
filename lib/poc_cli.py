@@ -1,18 +1,20 @@
 """Shared argparse CLI for standalone PoC execution.
 
 Each ``poc.py`` keeps its own ``VULN`` dict and ``run()``; this helper only
-provides the identical ``--target/--json/--verbose`` command line so every
-PoC behaves the same standalone and under the orchestrator.
+provides the identical ``--target/--json/--verbose/--print-evidence`` command
+line so every PoC behaves the same standalone and under the orchestrator.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
 from . import lab_guard
+from .art import BANNER, Colors
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,7 +36,16 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
         action="store_true",
         help="also print the newest raw evidence log of this PoC",
     )
+    parser.add_argument("--no-color", action="store_true", help="disable ANSI colors")
     args = parser.parse_args(argv)
+
+    color_enabled = (
+        not args.no_color
+        and args.json is False
+        and sys.stdout.isatty()
+        and os.environ.get("NO_COLOR") is None
+    )
+    colors = Colors(color_enabled)
 
     try:
         target = lab_guard.check_target(args.target)
@@ -45,7 +56,13 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
     command = f"python3 {Path(poc_file).resolve().relative_to(ROOT)} --target {target}"
     if args.verbose:
         command += " --verbose"
-    print(f"command: {command}")
+
+    if not args.json:
+        print(colors.cyan(BANNER))
+        print(f"  {colors.bold('VULN ' + str(vuln.get('id')) + ' — ' + str(vuln.get('title')))}")
+        if vuln.get("endpoint"):
+            print(f"  {colors.dim(str(vuln['endpoint']))}")
+        print()
 
     try:
         result = run_fn(target, verbose=args.verbose)
@@ -70,11 +87,21 @@ def poc_main(vuln: dict, run_fn, argv: list[str] | None, poc_file: str) -> int:
     if args.json:
         print(json.dumps(result, indent=2))
     else:
-        print(f"vulnerable: {'yes' if result['vulnerable'] else 'no'}")
-        if result["notes"]:
-            print(f"notes: {result['notes']}")
+        proof = str(result["notes"]).strip() or (
+            "target is vulnerable" if result["vulnerable"] else "not reproduced"
+        )
+        if result["vulnerable"]:
+            print(f"  {colors.green('[+]')} {colors.green(proof)}")
+        else:
+            print(f"  {colors.red('[-]')} {colors.red(proof)}")
+
         for path in result["evidence"]:
-            print(f"evidence: {path}")
+            try:
+                shown = Path(path).relative_to(ROOT)
+            except ValueError:
+                shown = Path(path)
+            print(f"      {colors.dim('evidence: ' + str(shown))}")
+        print(f"      {colors.dim('command:  ' + command)}")
 
     if args.print_evidence:
         evidence_dir = Path(poc_file).resolve().parent / "evidence"
