@@ -46,6 +46,9 @@ python3 i-explorar.py --index
 
 # any PoC also runs standalone
 python3 vulns/01-<slug>/poc.py --target http://127.0.0.1:8080
+
+# run one PoC and print its newest raw evidence log
+./tools/show-evidence.sh 01
 ```
 
 ## Lab
