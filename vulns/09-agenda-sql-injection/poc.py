@@ -121,12 +121,16 @@ def run(target: str, *, verbose: bool = False) -> dict:
         vulnerable = any("invalid input syntax" in line for line in error_lines) and any(
             "PostgreSQL" in line for line in error_lines
         )
-        notes.append(
-            "PostgreSQL version leaked through the error channel: "
-            + (error_lines[0][:160] if error_lines else "no error extracted")
-            if vulnerable
-            else "no error returned for the injected quote"
-        )
+        version = ""
+        for line in error_lines:
+            found = re.search(r"PostgreSQL \d+(?:\.\d+)?", line)
+            if found:
+                version = found.group(0)
+                break
+        if vulnerable:
+            notes.append(f"database version leaked through the error channel: {version or 'PostgreSQL'}")
+        else:
+            notes.append("no error returned for the injected quote")
     finally:
         _psql(lab, CLEANUP_SQL, log=log)
         log.close()

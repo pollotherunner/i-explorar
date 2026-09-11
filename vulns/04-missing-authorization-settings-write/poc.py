@@ -127,7 +127,7 @@ def run(target: str, *, verbose: bool = False) -> dict:
 
     notes.append(
         f"setting {setting_id} changed from {original!r} to the attacker value by the "
-        f"non-admin secretary and restored afterwards; vulnerable={vulnerable}"
+        f"non-admin secretary and restored afterwards"
     )
     return {"vulnerable": vulnerable, "evidence": [str(log.path)], "notes": "; ".join(notes)}
 

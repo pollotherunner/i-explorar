@@ -13,6 +13,7 @@ statement aborts on the cast error).
 from __future__ import annotations
 
 import json
+import re
 import sys
 import urllib.parse
 from pathlib import Path
@@ -99,8 +100,12 @@ def run(target: str, *, verbose: bool = False) -> dict:
         message = injected.text
 
     vulnerable = "invalid input syntax" in message and "PostgreSQL" in message
+    version = ""
+    if vulnerable:
+        found = re.search(r"PostgreSQL \d+(?:\.\d+)?", message)
+        version = found.group(0) if found else "PostgreSQL"
     notes.append(
-        "PostgreSQL version leaked through the UPDATE error: " + message[:220]
+        f"database version leaked through the UPDATE error: {version}"
         if vulnerable
         else "no database error observed"
     )
