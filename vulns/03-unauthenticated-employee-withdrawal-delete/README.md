@@ -105,7 +105,7 @@ DELETE 1
 
 ![Vulnerable 2.11.0 run](evidence/screenshots/03-unauthenticated-employee-withdrawal-delete-01-vulnerable-run.png)
 
-Caption: raw PoC log on the vulnerable 2.11.0 release — unauthenticated
+Caption: console capture on the vulnerable 2.11.0 release — unauthenticated
 `DELETE` returning `{"success":true}` and the row flipping to `ativo=0` with
 `data_exclusao` set.
 

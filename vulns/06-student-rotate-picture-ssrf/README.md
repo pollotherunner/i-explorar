@@ -126,7 +126,7 @@ DELETE 1
 
 ![SSRF callback proof](evidence/screenshots/06-student-rotate-picture-ssrf-01-callback-proof.png)
 
-Caption: raw PoC log rendered as an image — the i-Educar container called
+Caption: console capture of the PoC run — the i-Educar container called
 `GET /ssrf-poc` on the callback server and the endpoint returned the stored
 image URL.
 

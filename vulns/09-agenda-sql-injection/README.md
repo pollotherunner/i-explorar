@@ -96,7 +96,7 @@ DELETE 1
 
 ![SQL injection version leak](evidence/screenshots/09-agenda-sql-injection-01-version-leak.png)
 
-Caption: raw PoC log rendered as an image — control request `302`, injection
+Caption: console capture of the PoC run — control request `302`, injection
 request `500`, and the PostgreSQL version leaked in the extracted error line.
 
 ## Impact

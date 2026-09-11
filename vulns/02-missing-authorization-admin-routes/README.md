@@ -220,7 +220,7 @@ Caption: secretary session on `/periodo-lancamento` right after
 
 ![Raw proof](evidence/screenshots/02-missing-authorization-admin-routes-03-raw-proof.png)
 
-Caption: full raw PoC log rendered as an image (see Evidence section).
+Caption: console capture of the PoC run against the 2.11.0 lab.
 
 ## Impact
 

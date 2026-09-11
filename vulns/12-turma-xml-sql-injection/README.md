@@ -96,7 +96,7 @@ HTTP 200 elapsed=4.089s
 
 ![Time-based SQLi proof](evidence/screenshots/12-turma-xml-sql-injection-01-time-delay.png)
 
-Caption: raw PoC log rendered as an image — baseline 0.075 s versus injected
+Caption: console capture of the PoC run — baseline 0.075 s versus injected
 4.076 s with an identical XML body.
 
 ## Impact

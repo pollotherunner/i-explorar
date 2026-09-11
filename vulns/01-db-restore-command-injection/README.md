@@ -132,7 +132,7 @@ DROP DATABASE
 
 ![VULN 01 command injection proof](evidence/screenshots/01-db-restore-command-injection-01-marker-proof.png)
 
-Caption: raw PoC log showing the injected `id` command writing
+Caption: console capture of the PoC run — the injected `id` command writes
 `uid=1000(ieducar) ...` to the marker file inside `ieducar-php`.
 
 ## Impact

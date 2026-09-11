@@ -126,7 +126,7 @@ uid=1000(ieducar) gid=1000(ieducar) groups=1000(ieducar),1000(ieducar)
 
 ![Object injection RCE proof](evidence/screenshots/08-quadro-horario-object-injection-01-marker-proof.png)
 
-Caption: raw PoC log rendered as an image — the serialized payload is accepted
+Caption: console capture of the PoC run — the serialized payload is accepted
 by the form page and the command output is read back from the `ieducar-fpm`
 container.
 

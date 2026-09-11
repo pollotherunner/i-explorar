@@ -115,7 +115,7 @@ value `IEXPLORAR_POC_KEY_VISUAL`. The value was restored after the capture.
 
 ![Raw proof](evidence/screenshots/04-missing-authorization-settings-write-02-raw-proof.png)
 
-Caption: full raw PoC log rendered as an image (see Evidence section).
+Caption: console capture of the PoC run against the 2.11.0 lab.
 
 ## Impact
 

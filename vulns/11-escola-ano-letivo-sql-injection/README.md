@@ -103,7 +103,7 @@ HTTP 200 elapsed=2.078s
 
 ![Time-based SQLi proof](evidence/screenshots/11-escola-ano-letivo-sql-injection-01-time-delay.png)
 
-Caption: raw PoC log rendered as an image — baseline 0.072 s versus injected
+Caption: console capture of the PoC run — baseline 0.072 s versus injected
 2.074 s for the same response body, a 2.002 s delay caused by `pg_sleep(2)`.
 
 ## Impact

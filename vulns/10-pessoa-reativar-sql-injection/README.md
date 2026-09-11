@@ -86,7 +86,7 @@ HTTP 200
 
 ![SQL injection version leak](evidence/screenshots/10-pessoa-reativar-sql-injection-01-version-leak.png)
 
-Caption: raw PoC log rendered as an image — clean control response and the
+Caption: console capture of the PoC run — clean control response and the
 injected UPDATE returning the PostgreSQL version in the JSON error.
 
 ## Impact

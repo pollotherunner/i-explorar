@@ -84,7 +84,7 @@ HTTP 200
 
 ![SQL injection version leak](evidence/screenshots/13-matricula-frequencia-sql-injection-01-version-leak.png)
 
-Caption: raw PoC log rendered as an image — clean control response and the
+Caption: console capture of the PoC run — clean control response and the
 injected function argument leaking the PostgreSQL version.
 
 ## Impact

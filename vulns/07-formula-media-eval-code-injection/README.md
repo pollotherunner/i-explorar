@@ -149,7 +149,7 @@ DELETE 1
 
 ![eval RCE proof](evidence/screenshots/07-formula-media-eval-code-injection-01-marker-proof.png)
 
-Caption: raw PoC log rendered as an image — formula stored via the admin form,
+Caption: console capture of the PoC run — formula stored via the admin form,
 grade save triggering the `eval()`, and the `uid=1000(ieducar)` marker read
 back from the `ieducar-fpm` container.
 

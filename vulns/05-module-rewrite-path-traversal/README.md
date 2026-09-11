@@ -212,7 +212,7 @@ text states the path and the request used.
 
 ![Redacted .env proof](evidence/screenshots/05-module-rewrite-path-traversal-02-env-redacted-proof.png)
 
-Caption: raw PoC log rendered as an image; `.env` is returned with `APP_KEY`,
+Caption: console capture of the run; `.env` is returned with `APP_KEY`,
 `DB_PASSWORD` and other secrets masked by the evidence writer.
 
 ## Impact
