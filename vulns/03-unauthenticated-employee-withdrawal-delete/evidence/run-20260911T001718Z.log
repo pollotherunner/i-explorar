@@ -1,0 +1,33 @@
+# i-explorar raw evidence
+# started_at: 2026-09-11T00:17:18.221151+00:00
+# host: -03
+# target: http://127.0.0.1:8080
+# lab: /home/pollo/disclosures/i-explorar/lab/i-educar
+# lab commit: 898d2da77ce7fcd0fa8a3bb0bec629defcac1842
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc 'INSERT INTO pmieducar.motivo_afastamento (cod_motivo_afastamento, ref_usuario_cad, nm_motivo, data_cadastro, ativo, ref_cod_instituicao) VALUES (1, 1, '"'"'i-explorar poc'"'"', now(), 1, 1) ON CONFLICT DO NOTHING; INSERT INTO pmieducar.servidor (cod_servidor, ref_cod_instituicao, carga_horaria, data_cadastro, ativo) VALUES (1, 1, 40, now(), 1) ON CONFLICT DO NOTHING; INSERT INTO pmieducar.servidor_afastamento (ref_cod_servidor, sequencial, ref_ref_cod_instituicao, ref_cod_motivo_afastamento, ref_usuario_cad, data_cadastro, data_saida, ativo) VALUES (1, 1718, 1, 1, 1, now(), now(), 1) RETURNING id;'
+
+--- psql output ---
+INSERT 0 1
+INSERT 0 1
+1
+INSERT 0 1
+--- end psql output ---
+# seeded withdrawal row id: 1
+
+### unauthenticated DELETE /api/employee-withdrawal/1
+HTTP 200
+
+--- body ---
+{"success":true}
+--- end body ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc 'SELECT ativo || '"'"'|'"'"' || COALESCE(data_exclusao::text, '"'"''"'"') FROM pmieducar.servidor_afastamento WHERE id = 1;'
+
+--- psql output ---
+0|2026-09-10 21:17:18
+--- end psql output ---
+$ docker compose --project-directory /home/pollo/disclosures/i-explorar/lab/i-educar -f /home/pollo/disclosures/i-explorar/lab/i-educar/docker-compose.yml exec -T postgres psql -U ieducar -d ieducar -tAc 'DELETE FROM pmieducar.servidor_afastamento WHERE id = 1;'
+
+--- psql output ---
+DELETE 1
+--- end psql output ---
+# finished_at: 2026-09-11T00:17:18.720020+00:00
